@@ -1,0 +1,51 @@
+@import "bourbon";
+
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+
+$pointercolor: rgb(139, 197, 64);
+
+.close{
+  position: relative;
+  float: right;
+  width: 15px;
+  height: 15px;
+  overflow: hidden;
+  margin: 0.3%;
+  &:hover {
+    &::before, &::after {
+      background: $pointercolor;
+    }
+  }
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: rgb(47, 68, 78);
+  }
+  &::before {
+    @include transform(rotate(45deg));
+  }
+  &::after {
+    @include transform(rotate(-45deg));
+  }
+  &.black {
+    &::before, &::after {
+      height: 3px;
+      margin-top: -2px;
+    }
+  }
+  &.fat {
+    &::before, &::after {
+      border-radius: 50%;
+    }
+  }
+}
+
